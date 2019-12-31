@@ -6,7 +6,7 @@ import { UserLocation } from './components/user-location.component'
 import { useSettingsState } from './settings.context'
 import { getLocation } from './shared/geo-position'
 import { RoutesSegments } from './components/routes-segments.component'
-import { RoutesStations } from './components/routes-stations.component'
+// import { RoutesStations } from './components/routes-stations.component'
 import { RoutesPositions } from './components/routes-positions.component'
 
 type Props = {
@@ -59,7 +59,10 @@ export function TheMap(props: Props) {
       <ZoomControl position={leftHanded ? 'bottomleft' : 'bottomright'} />
 
       <RoutesSegments selectedRoutes={selectedRoutes} />
-      <RoutesStations selectedRoutes={selectedRoutes} />
+      {/* Inhibit the rendering of the station markers because they look cluttered when
+      the map is zoomed out. This will be reconsidered when we have a way to change
+      the marker scale, as a function of zoom level.
+      <RoutesStations selectedRoutes={selectedRoutes} /> */}
       <RoutesPositions selectedRoutes={selectedRoutes} />
     </Map>
   )
