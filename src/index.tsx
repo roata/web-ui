@@ -1,3 +1,5 @@
+import './polyfills'
+import './hacks'
 import * as React from 'react'
 import ReactDOM from 'react-dom'
 import { I18nextProvider } from 'react-i18next'
@@ -11,7 +13,10 @@ import { SettingsProvider } from './settings.context'
 import { ErrorBoundary } from './shared/error-boundary'
 
 if (process.env.NODE_ENV === 'production') {
-  Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN })
+  Sentry.init({
+    dsn: process.env.REACT_APP_SENTRY_DSN,
+    release: process.env.REACT_APP_DEPLOY_HASH,
+  })
 }
 
 const theme = createMuiTheme()
